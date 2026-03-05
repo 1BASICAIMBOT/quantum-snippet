@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Snippet — Web Design Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #FAF7F2; color: #1A1612; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 60px; display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,242,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid #E2D9CE;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #1A1612; text-decoration: none; }
+.nav-logo span { color: #C9A84C; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 13px; color: #8A7A6A; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: #1A1612; }
+.nav-cta { background: #1A1612 !important; color: #FAF7F2 !important; padding: 10px 24px; border-radius: 2px; }
+.nav-cta:hover { background: #3D2E1E !important; color: #FAF7F2 !important; }
+
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+.hero-left { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
+
+.eyebrow { display: flex; align-items: center; gap: 12px; font-size: 11px; color: #C9A84C; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; animation: fadeUp 0.7s ease both; }
+.eyebrow::before { content: ''; width: 32px; height: 1px; background: #C9A84C; flex-shrink: 0; }
+
+h1 { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 28px; animation: fadeUp 0.7s 0.1s ease both; }
+h1 em { font-style: italic; color: #C9A84C; }
+h1 strong { font-weight: 600; display: block; }
+
+.hero-desc { font-size: 16px; color: #8A7A6A; line-height: 1.8; max-width: 420px; margin-bottom: 40px; animation: fadeUp 0.7s 0.2s ease both; }
+
+.btn-row { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+.btn-dark { background: #1A1612; color: #FAF7F2; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 14px 32px; border: none; border-radius: 2px; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
+.btn-dark:hover { background: #3D2E1E; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: #8A7A6A; font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 14px 32px; border: 1px solid #E2D9CE; border-radius: 2px; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; display: inline-block; transition: all 0.2s; }
+.btn-outline:hover { border-color: #1A1612; color: #1A1612; }
+
+.hero-stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid #E2D9CE; animation: fadeUp 0.7s 0.4s ease both; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 600; color: #1A1612; display: block; line-height: 1; }
+.stat-label { font-size: 12px; color: #8A7A6A; letter-spacing: 0.06em; margin-top: 4px; }
+
+.hero-right { background: #F2EDE4; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero-bg-text { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 280px; font-weight: 600; color: rgba(201,168,76,0.07); line-height: 1; pointer-events: none; user-select: none; }
+.hero-card { background: #FAF7F2; border: 1px solid #E2D9CE; border-radius: 4px; padding: 36px; width: 320px; box-shadow: 0 24px 64px rgba(26,22,18,0.08); position: relative; z-index: 1; animation: fadeUp 0.8s 0.3s ease both; }
+.card-label { font-size: 10px; color: #C9A84C; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+.card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+.card-sub { font-size: 13px; color: #8A7A6A; margin-bottom: 20px; line-height: 1.6; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.card-tag { font-size: 11px; color: #8A7A6A; background: #F2EDE4; border: 1px solid #E2D9CE; padding: 3px 10px; border-radius: 100px; }
+.card-bar { height: 2px; background: #E2D9CE; border-radius: 1px; overflow: hidden; margin-bottom: 6px; }
+.card-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, #C9A84C, #E8D4A0); animation: barfill 1.5s 1s ease forwards; }
+@keyframes barfill { to { width: 100%; } }
+.card-bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: #8A7A6A; }
+
+.marquee { border-top: 1px solid #E2D9CE; border-bottom: 1px solid #E2D9CE; background: #F2EDE4; padding: 14px 0; overflow: hidden; }
+.marquee-track { display: flex; width: max-content; animation: scroll 22s linear infinite; }
+.marquee-item { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #8A7A6A; padding: 0 32px; white-space: nowrap; border-right: 1px solid #E2D9CE; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+.s-label { display: flex; align-items: center; gap: 12px; font-size: 11px; color: #C9A84C; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+.s-label::before { content: ''; width: 32px; height: 1px; background: #C9A84C; flex-shrink: 0; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1.1; margin-bottom: 16px; }
+h2 em { font-style: italic; color: #C9A84C; }
+.s-sub { font-size: 15px; color: #8A7A6A; max-width: 480px; line-height: 1.8; margin-bottom: 56px; }
+
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #E2D9CE; border: 1px solid #E2D9CE; border-radius: 4px; overflow: hidden; }
+.service-card { background: #FAF7F2; padding: 44px 36px; transition: background 0.2s; }
+.service-card:hover { background: #F2EDE4; }
+.s-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: #E2D9CE; display: block; margin-bottom: 20px; line-height: 1; }
+.s-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+.s-desc { font-size: 14px; color: #8A7A6A; line-height: 1.7; margin-bottom: 20px; }
+.s-price { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: #C9A84C; }
+
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.p-item { border: 1px solid #E2D9CE; border-radius: 4px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+.p-item:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(26,22,18,0.08); }
+.p-item:first-child { grid-column: 1 / -1; }
+.p-img { height: 260px; display: flex; align-items: center; justify-content: center; position: relative; }
+.p-item:first-child .p-img { height: 360px; }
+.p-bg { position: absolute; inset: 0; }
+.bg1 { background: linear-gradient(135deg, #1A1612, #3D2E1E); }
+.bg2 { background: linear-gradient(135deg, #0A1628, #1E3A5F); }
+.bg3 { background: linear-gradient(135deg, #1A2A1A, #2D4A2D); }
+.p-label { position: relative; z-index: 1; text-align: center; }
+.p-tag { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; }
+.p-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.85); }
+.p-info { padding: 20px 24px; background: #FAF7F2; border-top: 1px solid #E2D9CE; display: flex; align-items: center; justify-content: space-between; }
+.p-info-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; }
+.p-info-type { font-size: 12px; color: #8A7A6A; letter-spacing: 0.04em; margin-top: 2px; }
+.p-arrow { color: #C9A84C; font-size: 18px; }
+
+.process-wrap { background: #1A1612; padding: 100px 60px; }
+.process-inner { max-width: 1200px; margin: 0 auto; }
+.process-wrap .s-label { color: #E8D4A0; }
+.process-wrap .s-label::before { background: #E8D4A0; }
+.process-wrap h2 { color: #FAF7F2; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); margin-top: 56px; }
+.process-step { padding: 44px 32px; background: #1A1612; }
+.ps-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: rgba(201,168,76,0.18); display: block; margin-bottom: 20px; }
+.ps-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: #FAF7F2; margin-bottom: 10px; }
+.ps-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.7; }
+
+.testimonial-wrap { padding: 100px 60px; text-align: center; max-width: 860px; margin: 0 auto; }
+.t-quote { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; font-style: italic; line-height: 1.5; color: #1A1612; margin-bottom: 32px; }
+.t-quote::before { content: '\201C'; color: #C9A84C; font-size: 80px; line-height: 0; vertical-align: -28px; margin-right: 4px; }
+.t-author { font-size: 13px; color: #8A7A6A; letter-spacing: 0.1em; text-transform: uppercase; }
+.t-author strong { color: #1A1612; font-weight: 500; }
+
+.cta-wrap { background: #F2EDE4; border-top: 1px solid #E2D9CE; padding: 100px 60px; text-align: center; }
+.cta-sub { font-size: 16px; color: #8A7A6A; margin-bottom: 40px; line-height: 1.7; margin-top: 16px; }
+.cta-email { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: #1A1612; text-decoration: none; border-bottom: 2px solid #C9A84C; padding-bottom: 4px; display: inline-block; margin-bottom: 36px; transition: color 0.2s; }
+.cta-email:hover { color: #C9A84C; }
+
+footer { padding: 36px 60px; border-top: 1px solid #E2D9CE; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: #1A1612; }
+.footer-logo span { color: #C9A84C; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; color: #8A7A6A; text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+.footer-links a:hover { color: #1A1612; }
+.footer-copy { font-size: 12px; color: #8A7A6A; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 60px 24px; }
+  h1 { font-size: 48px; }
+  section { padding: 60px 24px; }
+  h2 { font-size: 36px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .p-item:first-child { grid-column: 1; }
+  .process-wrap { padding: 60px 24px; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .testimonial-wrap { padding: 60px 24px; }
+  .t-quote { font-size: 22px; }
+  .cta-wrap { padding: 60px 24px; }
+  footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Quantum <span>Snippet</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Us</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Web Design Agency</div>
+    <h1>Websites that<br><em>grow</em> your<br><strong>business.</strong></h1>
+    <p class="hero-desc">We build fast, beautiful websites for small businesses across the USA. Restaurants, salons, law firms — if you need a website that brings in real customers, let's talk.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn-dark">Get a Free Quote</a>
+      <a href="#work" class="btn-outline">See Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">15+</span><div class="stat-label">Sites Delivered</div></div>
+      <div><span class="stat-num">7</span><div class="stat-label">Day Turnaround</div></div>
+      <div><span class="stat-num">100%</span><div class="stat-label">Satisfaction Rate</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-text">QS</div>
+    <div class="hero-card">
+      <div class="card-label">Latest Project</div>
+      <div class="card-title">Quantum Snippet</div>
+      <div class="card-sub">AI-powered developer tool — designed and launched in 3 days.</div>
+      <div class="card-tags">
+        <span class="card-tag">Next.js</span>
+        <span class="card-tag">UI Design</span>
+        <span class="card-tag">Branding</span>
+        <span class="card-tag">Launch</span>
+      </div>
+      <div class="card-bar"><div class="card-bar-fill"></div></div>
+      <div class="card-bar-labels"><span>Project complete</span><span>100%</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Small Business Websites</span>
+    <span class="marquee-item">Fast 7-Day Delivery</span>
+    <span class="marquee-item">Mobile Responsive</span>
+    <span class="marquee-item">SEO Optimized</span>
+    <span class="marquee-item">Starting at $1,000</span>
+    <span class="marquee-item">Based in the USA</span>
+    <span class="marquee-item">Custom Design</span>
+    <span class="marquee-item">No Templates</span>
+    <span class="marquee-item">Small Business Websites</span>
+    <span class="marquee-item">Fast 7-Day Delivery</span>
+    <span class="marquee-item">Mobile Responsive</span>
+    <span class="marquee-item">SEO Optimized</span>
+    <span class="marquee-item">Starting at $1,000</span>
+    <span class="marquee-item">Based in the USA</span>
+    <span class="marquee-item">Custom Design</span>
+    <span class="marquee-item">No Templates</span>
+  </div>
+</div>
+
+<section id="services">
+  <p class="s-label reveal">What We Offer</p>
+  <h2 class="reveal">Services built for<br><em>small businesses.</em></h2>
+  <p class="s-sub reveal">No bloated agencies. No hidden fees. Just beautiful websites delivered fast.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="s-num">01</span>
+      <div class="s-name">Starter Website</div>
+      <div class="s-desc">A clean, professional 3–5 page website. Perfect for local businesses that need a strong online presence fast. Includes contact form, Google Maps, and mobile optimization.</div>
+      <div class="s-price">From $1,000</div>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-num">02</span>
+      <div class="s-name">Business Website</div>
+      <div class="s-desc">A full 5–10 page website with custom design, SEO setup, booking system, and social media integration. Built to convert visitors into paying customers.</div>
+      <div class="s-price">From $1,500</div>
+    </div>
+    <div class="service-card reveal">
+      <span class="s-num">03</span>
+      <div class="s-name">Website Redesign</div>
+      <div class="s-desc">Got an outdated website embarrassing your business? We'll rebuild it from scratch — modern, fast, and mobile-friendly. Keep your content, ditch the old look.</div>
+      <div class="s-price">From $1,200</div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top: 0;">
+  <p class="s-label reveal">Our Work</p>
+  <h2 class="reveal">Recent <em>projects.</em></h2>
+  <p class="s-sub reveal">Every site is custom designed — no templates, no cookie-cutter layouts.</p>
+  <div class="portfolio-grid">
+    <div class="p-item reveal">
+      <div class="p-img">
+        <div class="p-bg bg1"></div>
+        <div class="p-label">
+          <div class="p-tag">SaaS Product</div>
+          <div class="p-name">Quantum Snippet</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div>
+          <div class="p-info-name">Quantum Snippet</div>
+          <div class="p-info-type">Landing Page · Branding · Development</div>
+        </div>
+        <div class="p-arrow">&#8594;</div>
+      </div>
+    </div>
+    <div class="p-item reveal">
+      <div class="p-img">
+        <div class="p-bg bg2"></div>
+        <div class="p-label">
+          <div class="p-tag">Coming Soon</div>
+          <div class="p-name">Your Business</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div>
+          <div class="p-info-name">Your Business Here</div>
+          <div class="p-info-type">Available for new projects</div>
+        </div>
+        <div class="p-arrow">&#8594;</div>
+      </div>
+    </div>
+    <div class="p-item reveal">
+      <div class="p-img">
+        <div class="p-bg bg3"></div>
+        <div class="p-label">
+          <div class="p-tag">Coming Soon</div>
+          <div class="p-name">Your Business</div>
+        </div>
+      </div>
+      <div class="p-info">
+        <div>
+          <div class="p-info-name">Your Business Here</div>
+          <div class="p-info-type">Available for new projects</div>
+        </div>
+        <div class="p-arrow">&#8594;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="process-wrap" id="process">
+  <div class="process-inner">
+    <p class="s-label reveal">How It Works</p>
+    <h2 class="reveal">Simple process.<br><em>Fast results.</em></h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <span class="ps-num">01</span>
+        <div class="ps-name">Free Consultation</div>
+        <div class="ps-desc">We hop on a 30-minute call. We learn about your business, your goals, and what you need.</div>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">02</span>
+        <div class="ps-name">Custom Proposal</div>
+        <div class="ps-desc">We send you a clear proposal with pricing, timeline, and exactly what's included. No surprises.</div>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">03</span>
+        <div class="ps-name">We Build It</div>
+        <div class="ps-desc">You relax while we design and build your site. We send updates every step of the way.</div>
+      </div>
+      <div class="process-step reveal">
+        <span class="ps-num">04</span>
+        <div class="ps-name">You Go Live</div>
+        <div class="ps-desc">Site delivered in 7 days. We handle the launch and make sure everything works perfectly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="testimonial-wrap reveal">
+  <p class="t-quote">Quantum Snippet built our website in less than a week. It looks incredible and we've already gotten new customers from it. Best investment we've made for our business.</p>
+  <p class="t-author"><strong>Your First Client</strong> &nbsp;&middot;&nbsp; Small Business Owner, USA</p>
+</div>
+
+<div class="cta-wrap" id="contact">
+  <h2 class="reveal">Ready for a website<br>that <em>works?</em></h2>
+  <p class="cta-sub reveal">Let's talk about your project. We'll get back to you within 24 hours.</p>
+  <a href="mailto:quatumsnippet@gmail.com" class="cta-email reveal">quatumsnippet@gmail.com</a>
+  <br><br>
+  <a href="mailto:quatumsnippet@gmail.com?subject=Website%20Quote%20Request&body=Hi%20Quantum%20Snippet%2C%0A%0AI%27m%20interested%20in%20a%20new%20website.%0A%0ABusiness%20name%3A%20%0AWhat%20I%20need%3A%20%0ABudget%3A%20%0A%0AThanks!" class="btn-dark reveal">Request a Free Quote</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Quantum <span>Snippet</span></div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Quantum Snippet &middot; Web Design Agency</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
