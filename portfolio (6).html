@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Quantum Snippet - Premium Web Design Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--sur:#111111;--card:#161616;--bor:#222222;--bor2:#2a2a2a;--gold:#C9A84C;--gold2:#E8D4A0;--txt:#F0EBE0;--mut:#6B6560;}
+body.light{--bg:#FAF7F2;--sur:#F2EDE4;--card:#FFFFFF;--bor:#E2D9CE;--bor2:#D0C4B4;--txt:#1A1612;--mut:#8A7A6A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;overflow-x:hidden;-webkit-text-size-adjust:100%;transition:background .3s,color .3s;}
+a{text-decoration:none;color:inherit;}
+.bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:9999;width:0;pointer-events:none;transition:width .1s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:70px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--bor);transition:background .3s;}
+body.light nav{background:rgba(250,247,242,.97);}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--txt);}
+.logo span{color:var(--gold);}
+.nl{display:flex;gap:32px;list-style:none;}
+.nl a{font-size:12px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+.nl a:hover{color:var(--txt);}
+.nr{display:flex;align-items:center;gap:10px;}
+.mbtn{background:none;border:1px solid var(--bor2);color:var(--mut);font-family:'Outfit',sans-serif;font-size:12px;padding:8px 13px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.mbtn:hover,.mbtn:focus{border-color:var(--gold);color:var(--gold);}
+.lw{position:relative;}
+.lbtn{background:none;border:1px solid var(--bor2);color:var(--mut);font-family:'Outfit',sans-serif;font-size:12px;padding:8px 13px;border-radius:2px;cursor:pointer;transition:all .2s;}
+.lbtn:hover{border-color:var(--gold);color:var(--gold);}
+.ldrop{position:absolute;top:calc(100% + 8px);right:0;background:var(--card);border:1px solid var(--bor2);border-radius:4px;display:none;min-width:150px;overflow:hidden;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.ldrop.open{display:block;}
+.lopt{padding:10px 16px;font-size:13px;color:var(--mut);cursor:pointer;transition:background .15s;}
+.lopt:hover{background:var(--bor);color:var(--txt);}
+.lopt.on{color:var(--gold);}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hbg span{display:block;width:24px;height:2px;background:var(--txt);transition:all .3s;}
+.mm{display:none;position:fixed;inset:0;top:70px;background:var(--bg);z-index:150;padding:40px 24px;flex-direction:column;gap:24px;}
+.mm.open{display:flex;}
+.mm a{font-size:22px;color:var(--txt);font-family:'Playfair Display',serif;border-bottom:1px solid var(--bor);padding-bottom:16px;}
+.ncta{background:var(--gold);color:#000;font-size:12px;font-weight:600;padding:10px 22px;border:none;border-radius:2px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;font-family:'Outfit',sans-serif;}
+.ncta:hover{background:var(--gold2);}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:70px;}
+.hl{padding:90px 60px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bor);}
+.htag{display:inline-flex;align-items:center;gap:10px;font-size:11px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px;}
+.htag::before{content:'';width:28px;height:1px;background:var(--gold);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(44px,5vw,78px);font-weight:900;line-height:.95;letter-spacing:-.02em;margin-bottom:28px;}
+h1 .it{font-style:italic;font-weight:400;color:var(--gold);display:block;}
+.hd{font-size:16px;color:var(--mut);line-height:1.8;max-width:440px;margin-bottom:44px;font-weight:300;}
+.cs{display:flex;flex-direction:column;gap:12px;max-width:340px;}
+.bg{background:var(--gold);color:#000;font-size:13px;font-weight:600;padding:17px 28px;border:none;border-radius:2px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;text-align:center;display:block;transition:all .2s;font-family:'Outfit',sans-serif;}
+.bg:hover{background:var(--gold2);transform:translateY(-2px);}
+.bo{background:transparent;color:var(--mut);font-size:13px;padding:17px 28px;border:1px solid var(--bor2);border-radius:2px;letter-spacing:.1em;text-transform:uppercase;text-align:center;display:block;transition:all .2s;font-family:'Outfit',sans-serif;}
+.bo:hover{border-color:var(--gold);color:var(--gold);}
+.tb{display:flex;gap:28px;margin-top:48px;padding-top:36px;border-top:1px solid var(--bor);flex-wrap:wrap;}
+.tn{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold);display:block;line-height:1;}
+.tl{font-size:11px;color:var(--mut);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;}
+.hr{display:flex;flex-direction:column;justify-content:center;padding:70px 60px;gap:18px;background:var(--sur);}
+.hc{background:var(--card);border:1px solid var(--bor);border-radius:4px;padding:24px;border-left:2px solid var(--gold);transition:transform .3s;}
+.hc:hover{transform:translateX(4px);}
+.hcl{font-size:10px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px;}
+.hct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:6px;}
+.hcs{font-size:13px;color:var(--mut);line-height:1.6;margin-bottom:12px;}
+.hctags{display:flex;flex-wrap:wrap;gap:6px;}
+.hctag{font-size:10px;color:var(--mut);border:1px solid var(--bor2);padding:3px 10px;border-radius:100px;}
+.hcbar{height:1px;background:var(--bor2);margin-top:14px;overflow:hidden;}
+.hcfill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;animation:fill 2s .5s ease forwards;}
+@keyframes fill{to{width:100%;}}
+.wi{font-size:13px;color:var(--mut);display:flex;gap:10px;margin-bottom:7px;}
+.wi span{color:var(--gold);}
+.mq{border-top:1px solid var(--bor);border-bottom:1px solid var(--bor);overflow:hidden;padding:13px 0;background:var(--sur);}
+.mqt{display:flex;width:max-content;animation:mq 24s linear infinite;}
+.mqi{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--mut);padding:0 36px;white-space:nowrap;border-right:1px solid var(--bor);}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.sec{padding:110px 60px;}
+.si{max-width:1140px;margin:0 auto;}
+.ey{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;}
+.ey::before{content:'';width:28px;height:1px;background:var(--gold);flex-shrink:0;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(32px,3.8vw,54px);font-weight:900;line-height:1.0;letter-spacing:-.02em;margin-bottom:14px;}
+h2 em{font-style:italic;font-weight:400;color:var(--gold);}
+.ss{font-size:15px;color:var(--mut);max-width:480px;line-height:1.8;margin-bottom:60px;font-weight:300;}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bor);border:1px solid var(--bor);}
+.sv{background:var(--bg);padding:44px 32px;transition:background .25s;position:relative;overflow:hidden;}
+.sv::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.sv:hover{background:var(--card);}
+.sv:hover::after{transform:scaleX(1);}
+.sn{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--bor2);display:block;margin-bottom:20px;line-height:1;}
+.snm{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:12px;}
+.sd{font-size:14px;color:var(--mut);line-height:1.7;margin-bottom:20px;}
+.sp{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);}
+.sb{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:14px;transition:gap .2s;}
+.sb:hover{gap:14px;}
+.cw{background:var(--gold);padding:70px 60px;}
+.ci{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.cit{text-align:center;padding:0 20px;border-right:1px solid rgba(0,0,0,.12);}
+.cit:last-child{border-right:none;}
+.cn{font-family:'Playfair Display',serif;font-size:60px;font-weight:900;color:#000;display:block;line-height:1;}
+.cl{font-size:12px;color:rgba(0,0,0,.5);letter-spacing:.1em;text-transform:uppercase;margin-top:8px;}
+.bas{background:var(--sur);padding:110px 60px;border-top:1px solid var(--bor);}
+.bag{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px;}
+.bac{border:1px solid var(--bor);border-radius:4px;overflow:hidden;background:var(--card);}
+.bah{padding:16px 22px;border-bottom:1px solid var(--bor);display:flex;justify-content:space-between;align-items:center;}
+.bat{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
+.bb{font-size:10px;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:3px 10px;border-radius:100px;letter-spacing:.08em;}
+.bsl{position:relative;height:270px;overflow:hidden;cursor:col-resize;user-select:none;}
+.baf,.bab{position:absolute;inset:0;width:100%;height:100%;}
+.bab{clip-path:inset(0 50% 0 0);}
+.bdv{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);z-index:10;transform:translateX(-50%);pointer-events:none;}
+.bhn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:11;color:#000;font-size:12px;font-weight:700;box-shadow:0 4px 16px rgba(201,168,76,.4);pointer-events:none;}
+.lb{position:absolute;bottom:10px;font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;z-index:12;pointer-events:none;}
+.lb-b{left:10px;background:rgba(0,0,0,.6);color:rgba(255,255,255,.7);}
+.lb-a{right:10px;background:var(--gold);color:#000;}
+.prs{background:var(--sur);padding:110px 60px;border-top:1px solid var(--bor);}
+.prg{display:grid;grid-template-columns:repeat(4,1fr);margin-top:60px;}
+.ps{padding:36px 28px;border-right:1px solid var(--bor);border-top:1px solid var(--bor);transition:background .2s;}
+.ps:last-child{border-right:none;}
+.ps:hover{background:var(--card);}
+.psn{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:var(--bor2);display:block;margin-bottom:18px;line-height:1;}
+.pst{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:8px;}
+.psd{font-size:13px;color:var(--mut);line-height:1.7;}
+.bks{background:var(--bg);padding:110px 60px;border-top:1px solid var(--bor);}
+.bkl{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:60px;}
+.cal{border:1px solid var(--bor);border-radius:4px;overflow:hidden;}
+.cah{background:var(--gold);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;}
+.cam{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#000;}
+.can{background:none;border:none;color:#000;cursor:pointer;font-size:18px;padding:4px 8px;opacity:.6;}
+.can:hover{opacity:1;}
+.cadow{display:grid;grid-template-columns:repeat(7,1fr);background:var(--card);}
+.cadow span{text-align:center;font-size:10px;color:var(--mut);text-transform:uppercase;padding:9px 0;}
+.cagd{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--bor);}
+.cd{background:var(--bg);text-align:center;padding:11px 4px;font-size:13px;transition:background .15s;}
+.cd.av{cursor:pointer;}
+.cd.av:hover{background:var(--card);}
+.cd.sl{background:var(--gold) !important;color:#000 !important;font-weight:600;}
+.cd.td{color:var(--gold);}
+.cd.of{color:var(--bor2);cursor:default;}
+.slt{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;margin-bottom:14px;}
+.slg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px;}
+.sli{padding:11px;border:1px solid var(--bor);border-radius:2px;text-align:center;font-size:13px;cursor:pointer;background:var(--bg);color:var(--txt);transition:all .15s;}
+.sli:hover{border-color:var(--gold);color:var(--gold);}
+.sli.sl{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600;}
+.bi{width:100%;background:var(--bg);border:1px solid var(--bor);color:var(--txt);font-family:'Outfit',sans-serif;font-size:14px;padding:13px 15px;border-radius:2px;outline:none;transition:border-color .2s;margin-bottom:9px;display:none;}
+.bi:focus{border-color:var(--gold);}
+.bkb{width:100%;background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:15px;border:none;border-radius:2px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;display:none;transition:background .2s;}
+.bkb:hover{background:var(--gold2);}
+.bok{display:none;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:18px;text-align:center;font-size:14px;color:var(--gold);margin-top:10px;}
+.ts{background:var(--sur);padding:110px 60px;border-top:1px solid var(--bor);text-align:center;}
+.tq{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,30px);font-weight:400;font-style:italic;line-height:1.5;max-width:780px;margin:0 auto 28px;}
+.tq::before{content:'"';color:var(--gold);font-size:64px;line-height:0;vertical-align:-24px;margin-right:4px;}
+.ta{font-size:12px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase;}
+.ta strong{color:var(--txt);}
+.ct{background:var(--bg);padding:110px 60px;border-top:1px solid var(--bor);}
+.cti{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.ug{display:flex;align-items:center;gap:8px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:11px 14px;font-size:13px;color:var(--gold);margin-bottom:28px;}
+.ugd{width:8px;height:8px;background:var(--gold);border-radius:50%;flex-shrink:0;animation:blink 1.2s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.pk{font-size:14px;color:var(--mut);display:flex;gap:11px;margin-bottom:11px;}
+.pk::before{content:'✓';color:var(--gold);font-weight:600;flex-shrink:0;}
+.cf{display:flex;flex-direction:column;gap:13px;}
+.cfr{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.cf input,.cf select,.cf textarea{width:100%;background:var(--card);border:1px solid var(--bor);color:var(--txt);font-family:'Outfit',sans-serif;font-size:14px;padding:13px 15px;border-radius:2px;outline:none;transition:border-color .2s;}
+.cf input::placeholder,.cf textarea::placeholder{color:var(--mut);}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--gold);}
+.cf select{background-color:var(--card);cursor:pointer;appearance:none;}
+.cf textarea{height:110px;resize:vertical;}
+.cfb{background:var(--gold);color:#000;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;padding:17px 28px;border:none;border-radius:2px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;width:100%;transition:all .2s;}
+.cfb:hover{background:var(--gold2);transform:translateY(-1px);}
+.cfb:disabled{background:var(--bor2);color:var(--mut);transform:none;}
+.cfok{display:none;color:var(--gold);font-size:14px;text-align:center;padding:11px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:2px;}
+.cfer{display:none;color:#e05555;font-size:14px;text-align:center;padding:11px;}
+.scs{background:var(--bg);padding:110px 60px;border-top:1px solid var(--bor);}
+.scl{display:flex;flex-direction:column;gap:72px;margin-top:60px;}
+.sci{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.sci.fl{direction:rtl;}
+.sci.fl > *{direction:ltr;}
+.scr{border-radius:8px;overflow:hidden;border:1px solid var(--bor2);box-shadow:0 24px 60px rgba(0,0,0,.5);transition:transform .4s;}
+.scr:hover{transform:translateY(-7px);}
+.scb2{background:#1a1a1a;padding:9px 13px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #111;}
+.scd{width:10px;height:10px;border-radius:50%;}
+.scu{flex:1;background:#111;border-radius:4px;padding:4px 10px;font-size:11px;color:#555;margin-left:6px;}
+.scit .stag{font-size:11px;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.scit .stag::before{content:'';width:22px;height:1px;background:var(--gold);}
+.scit .sname{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;line-height:1.0;margin-bottom:10px;letter-spacing:-.02em;}
+.scit .sdesc{font-size:14px;color:var(--mut);line-height:1.8;margin-bottom:20px;}
+.scit .pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px;}
+.scit .pill{font-size:11px;color:var(--mut);border:1px solid var(--bor2);padding:4px 12px;border-radius:100px;}
+.scit .res{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gold);background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:2px;padding:10px 14px;}
+.scit .res::before{content:'↑';font-size:16px;font-weight:700;}
+footer{background:var(--sur);border-top:1px solid var(--bor);padding:44px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+.flogo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+.flogo span{color:var(--gold);}
+.fls{display:flex;gap:24px;}
+.fls a{font-size:12px;color:var(--mut);text-decoration:none;transition:color .2s;}
+.fls a:hover{color:var(--txt);}
+.fc{display:flex;flex-direction:column;gap:4px;text-align:right;}
+.fc a{font-size:13px;color:var(--mut);text-decoration:none;transition:color .2s;}
+.fc a:hover{color:var(--gold);}
+.fcp{font-size:11px;color:var(--mut);margin-top:3px;}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+@media(max-width:940px){
+  nav{padding:0 20px;}
+  .nl,.nr{display:none;}
+  .hbg{display:flex;}
+  .hero{grid-template-columns:1fr;}
+  .hl{padding:56px 20px 36px;}
+  .hr{display:none;}
+  .sec,.bas,.scs,.prs,.bks,.ts,.ct{padding:64px 20px;}
+  .cw{padding:44px 20px;}
+  .sg{grid-template-columns:1fr;}
+  .bag{grid-template-columns:1fr;}
+  .prg{grid-template-columns:1fr 1fr;}
+  .bkl{grid-template-columns:1fr;}
+  .cti{grid-template-columns:1fr;gap:36px;}
+  .cfr{grid-template-columns:1fr;}
+  .ci{grid-template-columns:1fr 1fr;gap:28px;}
+  .cit{border-right:none;border-bottom:1px solid rgba(0,0,0,.12);padding-bottom:20px;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+  .fc{text-align:center;}
+  .sci,.sci.fl{grid-template-columns:1fr;direction:ltr;}
+  h1{font-size:44px;}
+}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<nav>
+  <a href="#" class="logo">Quantum <span>Snippet</span></a>
+  <ul class="nl">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#booking">Book a Call</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nr">
+    <button class="mbtn" id="modeBtn" onclick="toggleMode()">Light Mode</button>
+    <div class="lw">
+      <button class="lbtn" id="lbtn" onclick="toggleL()">EN</button>
+      <div class="ldrop" id="ldrop">
+        <div class="lopt on" onclick="setL('en',this)">English</div>
+        <div class="lopt" onclick="setL('es',this)">Espanol</div>
+        <div class="lopt" onclick="setL('fr',this)">Francais</div>
+        <div class="lopt" onclick="setL('pt',this)">Portugues</div>
+      </div>
+    </div>
+    <a href="#contact" class="ncta">Hire Us</a>
+  </div>
+  <button class="hbg" onclick="toggleM()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mm" id="mm">
+  <a href="#services" onclick="toggleM()">Services</a>
+  <a href="#work" onclick="toggleM()">Our Work</a>
+  <a href="#booking" onclick="toggleM()">Book a Call</a>
+  <a href="#contact" onclick="toggleM()" style="color:var(--gold)">Hire Us</a>
+</div>
+<div class="hero">
+  <div class="hl">
+    <div class="htag">Web Design Agency</div>
+    <h1>We build sites<br>that <span class="it">win</span><br>clients.</h1>
+    <p class="hd" id="hd">Fast, beautiful, conversion-focused websites for small businesses across the USA. Delivered in 7 days - guaranteed.</p>
+    <div class="cs">
+      <a href="#booking" class="bg" id="hb1">Book a Free 30-Min Call</a>
+      <a href="#work" class="bo" id="hb2">See Our Work</a>
+    </div>
+    <div class="tb">
+      <div><span class="tn" data-target="15" data-sfx="+">0+</span><div class="tl">Sites Delivered</div></div>
+      <div><span class="tn" data-target="7" data-sfx=" days">0 days</span><div class="tl">Turnaround</div></div>
+      <div><span class="tn" data-target="100" data-sfx="%">0%</span><div class="tl">Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="hc rv">
+      <div class="hcl">Latest Project</div>
+      <div class="hct">Quantum Snippet App</div>
+      <div class="hcs">AI-powered developer tool - full brand, landing page, and launch in 3 days.</div>
+      <div class="hctags"><span class="hctag">Branding</span><span class="hctag">UI Design</span><span class="hctag">Dev</span><span class="hctag">Launch</span></div>
+      <div class="hcbar"><div class="hcfill"></div></div>
+    </div>
+    <div class="hc rv">
+      <div class="hcl">2 Spots Open This Month</div>
+      <div class="hct">Your Business Could Be Next</div>
+      <div class="hcs">First come, first served. Book your free call today.</div>
+      <a href="#booking" class="sb">Book your spot &rarr;</a>
+    </div>
+    <div class="hc rv" style="background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.2);">
+      <div class="hcl">Why Us</div>
+      <div class="wi"><span>&#10003;</span>7-day delivery, every time</div>
+      <div class="wi"><span>&#10003;</span>100% custom - no templates</div>
+      <div class="wi"><span>&#10003;</span>Mobile-first, SEO-ready</div>
+      <div class="wi"><span>&#10003;</span>Free revisions until you love it</div>
+    </div>
+  </div>
+</div>
+<div class="mq"><div class="mqt">
+  <span class="mqi">Small Business Websites</span><span class="mqi">7-Day Delivery</span><span class="mqi">Mobile-First</span><span class="mqi">SEO Optimized</span><span class="mqi">From $499</span><span class="mqi">USA Based</span><span class="mqi">100% Custom</span><span class="mqi">Free Consultation</span><span class="mqi">Small Business Websites</span><span class="mqi">7-Day Delivery</span><span class="mqi">Mobile-First</span><span class="mqi">SEO Optimized</span><span class="mqi">From $499</span><span class="mqi">USA Based</span><span class="mqi">100% Custom</span><span class="mqi">Free Consultation</span>
+</div></div>
+<div class="sec" id="services"><div class="si">
+  <p class="ey rv">What We Offer</p>
+  <h2 class="rv">Built for <em>real</em> businesses.</h2>
+  <p class="ss rv">No bloated fees. No templates. Fast, beautiful websites that bring in customers.</p>
+  <div class="sg">
+    <div class="sv rv"><span class="sn">01</span><div class="snm">Starter Site</div><div class="sd">3-5 pages, custom design, contact form, Google Maps, mobile-optimized. Live in 7 days.</div><div class="sp">From $499</div><button class="sb" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a call &rarr;</button></div>
+    <div class="sv rv"><span class="sn">02</span><div class="snm">Business Site</div><div class="sd">5-10 pages, full SEO, booking system, social integration. Built to convert visitors into customers.</div><div class="sp">From $799</div><button class="sb" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a call &rarr;</button></div>
+    <div class="sv rv"><span class="sn">03</span><div class="snm">Redesign</div><div class="sd">Old site costing you clients? We rebuild from scratch - modern, fast, mobile-first.</div><div class="sp">From $599</div><button class="sb" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a call &rarr;</button></div>
+  </div>
+</div></div>
+<div class="cw" id="counters"><div class="ci">
+  <div class="cit rv"><span class="cn" data-target="15" data-sfx="+">0</span><div class="cl">Websites Delivered</div></div>
+  <div class="cit rv"><span class="cn" data-target="7" data-sfx=" Days">0</span><div class="cl">Avg. Delivery Time</div></div>
+  <div class="cit rv"><span class="cn" data-target="100" data-sfx="%">0</span><div class="cl">Client Satisfaction</div></div>
+  <div class="cit rv"><span class="cn" data-target="3" data-sfx="x">0</span><div class="cl">Avg. Traffic Increase</div></div>
+</div></div><div class="bas" id="work"><div class="si">
+  <p class="ey rv">Transformations</p>
+  <h2 class="rv">The <em>difference</em> is visible.</h2>
+  <p class="ss rv">Drag the slider to see what we deliver for every client.</p>
+  <div class="bag">
+    <div class="bac rv">
+      <div class="bah"><div class="bat">Ember and Oak</div><div class="bb">Restaurant</div></div>
+      <div class="bsl" id="sl1">
+        <div class="baf"><div style="width:100%;height:100%;background:#1A0F08;display:flex;flex-direction:column;"><div style="background:#120A04;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2A1A0C;flex-shrink:0;"><span style="font-size:9px;font-weight:700;color:#E8C87A;letter-spacing:.1em;">EMBER AND OAK</span></div><div style="flex:1;background:linear-gradient(180deg,#2A1208,#1A0A04);padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;"><div style="font-size:16px;font-weight:900;color:#F5EDD8;line-height:1.1;">Where Fire<br><span style="color:#E8783C;font-style:italic;">Meets Flavor</span></div><div style="background:#E8783C;color:#fff;font-size:7px;padding:6px 12px;font-weight:600;margin-top:4px;">Reserve a Table</div></div><div style="background:#150A04;padding:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;flex-shrink:0;"><div style="background:#220E06;border-radius:3px;padding:5px;font-size:7px;color:#E8C87A;">Wagyu $68</div><div style="background:#220E06;border-radius:3px;padding:5px;font-size:7px;color:#E8C87A;">Risotto $42</div><div style="background:#220E06;border-radius:3px;padding:5px;font-size:7px;color:#E8C87A;">Scallops $38</div></div></div></div>
+        <div class="bab" id="b1"><div style="width:100%;height:100%;background:#f0ece4;display:flex;flex-direction:column;"><div style="background:#8B4513;padding:8px 12px;flex-shrink:0;"><span style="font-size:9px;color:#fff;font-weight:bold;">Tonys Restaurant</span></div><div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:6px;overflow:hidden;"><div style="background:#ddd;border:2px dashed #bbb;height:60px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#999;text-align:center;">WELCOME TO TONYS RESTAURANT!! Best food in town</div><div style="background:#e8e8e8;height:4px;width:88%;border-radius:1px;"></div><div style="background:#8B4513;color:#fff;font-size:7px;padding:5px 9px;width:70px;text-align:center;">Contact</div></div><div style="background:#ddd;padding:6px;font-size:7px;color:#999;text-align:center;flex-shrink:0;">2009 Tonys Restaurant</div></div></div>
+        <div class="bdv" id="l1"></div><div class="bhn" id="h1">&harr;</div>
+        <div class="lb lb-b">Before</div><div class="lb lb-a">After</div>
+      </div>
+    </div>
+    <div class="bac rv">
+      <div class="bah"><div class="bat">Apex Fitness</div><div class="bb">Gym</div></div>
+      <div class="bsl" id="sl2">
+        <div class="baf"><div style="width:100%;height:100%;background:#080808;display:flex;flex-direction:column;"><div style="background:#080808;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #111;flex-shrink:0;"><span style="font-size:10px;font-weight:900;color:#fff;letter-spacing:.1em;">APEX<span style="color:#E5FF00">.</span></span></div><div style="flex:1;background:#000;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:5px;"><div style="font-size:8px;color:#E5FF00;letter-spacing:.2em;text-transform:uppercase;">Elite Training NYC</div><div style="font-size:22px;font-weight:900;color:#fff;line-height:.9;text-transform:uppercase;">TRAIN<br><span style="color:#E5FF00;">DIFFERENT.</span></div><div style="background:#E5FF00;color:#000;font-size:7px;font-weight:900;padding:5px 10px;text-transform:uppercase;margin-top:5px;width:fit-content;">Start Free Trial</div></div><div style="display:flex;border-top:1px solid #111;flex-shrink:0;"><div style="flex:1;padding:7px;text-align:center;border-right:1px solid #111;"><div style="font-size:13px;font-weight:900;color:#E5FF00;">12K</div><div style="font-size:6px;color:#444;text-transform:uppercase;">Members</div></div><div style="flex:1;padding:7px;text-align:center;border-right:1px solid #111;"><div style="font-size:13px;font-weight:900;color:#E5FF00;">50+</div><div style="font-size:6px;color:#444;text-transform:uppercase;">Classes</div></div><div style="flex:1;padding:7px;text-align:center;"><div style="font-size:13px;font-weight:900;color:#E5FF00;">8</div><div style="font-size:6px;color:#444;text-transform:uppercase;">Locations</div></div></div></div></div>
+        <div class="bab" id="b2"><div style="width:100%;height:100%;background:#e8e8e8;display:flex;flex-direction:column;"><div style="background:#c0392b;padding:8px 12px;flex-shrink:0;"><span style="font-size:9px;color:#fff;font-weight:bold;">City Gym</span></div><div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:6px;overflow:hidden;"><div style="background:#ddd;border:2px dashed #bbb;height:55px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#999;text-align:center;">GET FIT TODAY! Join City Gym Now!</div><div style="display:flex;gap:4px;margin-top:4px;"><div style="background:#c0392b;color:#fff;font-size:7px;padding:4px 7px;flex:1;text-align:center;">Membership</div><div style="background:#c0392b;color:#fff;font-size:7px;padding:4px 7px;flex:1;text-align:center;">Schedule</div></div></div><div style="background:#ccc;padding:5px;font-size:7px;color:#999;text-align:center;flex-shrink:0;">2014 City Gym</div></div></div>
+        <div class="bdv" id="l2"></div><div class="bhn" id="h2">&harr;</div>
+        <div class="lb lb-b">Before</div><div class="lb lb-a">After</div>
+      </div>
+    </div>
+    <div class="bac rv">
+      <div class="bah"><div class="bat">Serene Spa</div><div class="bb">Luxury Spa</div></div>
+      <div class="bsl" id="sl3">
+        <div class="baf"><div style="width:100%;height:100%;background:#F7F3EE;display:flex;flex-direction:column;"><div style="background:#F7F3EE;padding:8px 12px;border-bottom:1px solid #E8E0D4;flex-shrink:0;"><span style="font-size:11px;color:#3D2E1E;letter-spacing:.12em;font-style:italic;">Serene</span></div><div style="background:linear-gradient(180deg,#EDE4D8,#F7F3EE);padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;"><div style="font-size:16px;color:#2A1E12;font-style:italic;font-weight:400;line-height:1.2;">Restore. Renew.<br>Rediscover Yourself.</div><div style="background:#3D2E1E;color:#F7F3EE;font-size:6px;padding:5px 12px;letter-spacing:.1em;text-transform:uppercase;border-radius:1px;margin-top:4px;">Book a Treatment</div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:8px;background:#F0EAE2;flex:1;"><div style="text-align:center;padding:8px;background:#F7F3EE;border-radius:4px;"><div style="font-size:16px;">&#x1F9D6;</div><div style="font-size:7px;color:#2A1E12;font-weight:600;">Facial</div><div style="font-size:7px;color:#A07850;">$180</div></div><div style="text-align:center;padding:8px;background:#F7F3EE;border-radius:4px;"><div style="font-size:16px;">&#x1F486;</div><div style="font-size:7px;color:#2A1E12;font-weight:600;">Massage</div><div style="font-size:7px;color:#A07850;">$220</div></div><div style="text-align:center;padding:8px;background:#F7F3EE;border-radius:4px;"><div style="font-size:16px;">&#x2728;</div><div style="font-size:7px;color:#2A1E12;font-weight:600;">Body Ritual</div><div style="font-size:7px;color:#A07850;">$260</div></div></div></div></div>
+        <div class="bab" id="b3"><div style="width:100%;height:100%;background:#f5f5f5;display:flex;flex-direction:column;"><div style="background:#9b59b6;padding:8px 12px;flex-shrink:0;"><span style="font-size:9px;color:#fff;font-weight:bold;">Day Spa and Beauty</span></div><div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:6px;overflow:hidden;"><div style="background:#ddd;border:2px dashed #ccc;height:50px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#aaa;text-align:center;">Welcome to our Spa! Call us to book!</div><div style="background:#9b59b6;color:#fff;font-size:7px;padding:5px 9px;width:80px;text-align:center;">Services</div></div><div style="background:#ccc;padding:5px;font-size:7px;color:#999;text-align:center;flex-shrink:0;">Day Spa (555) 000-0000</div></div></div>
+        <div class="bdv" id="l3"></div><div class="bhn" id="h3">&harr;</div>
+        <div class="lb lb-b">Before</div><div class="lb lb-a">After</div>
+      </div>
+    </div>
+  </div>
+</div></div><div class="scs"><div class="si">
+  <p class="ey rv">Our Work</p>
+  <h2 class="rv">Real sites. <em>Real results.</em></h2>
+  <p class="ss rv">Every project is custom-built from scratch.</p>
+  <div class="scl">
+    <div class="sci rv">
+      <div class="scr"><div class="scb2"><div class="scd" style="background:#FF5F57"></div><div class="scd" style="background:#FFBD2E"></div><div class="scd" style="background:#28CA41"></div><div class="scu">emberandoak.com</div></div><div style="background:#1A0F08;"><div style="background:#120A04;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2A1A0C;"><span style="font-size:11px;font-weight:700;color:#E8C87A;letter-spacing:.1em;">EMBER AND OAK</span></div><div style="background:linear-gradient(180deg,#2A1208,#1A0A04);padding:36px 20px;text-align:center;"><div style="font-size:26px;font-weight:900;color:#F5EDD8;line-height:1.1;margin-bottom:12px;">Where Fire<br><span style="color:#E8783C;font-style:italic;">Meets Flavor</span></div><div style="display:inline-block;background:#E8783C;color:#fff;font-size:8px;padding:8px 16px;font-weight:600;">Reserve a Table</div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:12px;background:#150A04;"><div style="background:#220E06;border-radius:4px;overflow:hidden;"><div style="height:44px;background:linear-gradient(135deg,#3D1A08,#6B2A10);"></div><div style="padding:5px 7px;font-size:8px;color:#E8C87A;">Wagyu Ribeye - $68</div></div><div style="background:#220E06;border-radius:4px;overflow:hidden;"><div style="height:44px;background:linear-gradient(135deg,#1A2A10,#2A4A18);"></div><div style="padding:5px 7px;font-size:8px;color:#E8C87A;">Truffle Risotto - $42</div></div><div style="background:#220E06;border-radius:4px;overflow:hidden;"><div style="height:44px;background:linear-gradient(135deg,#1A1A3D,#2A2A6B);"></div><div style="padding:5px 7px;font-size:8px;color:#E8C87A;">Seared Scallops - $38</div></div></div></div></div>
+      <div class="scit"><div class="stag">Restaurant - Chicago IL</div><div class="sname">Ember and Oak</div><div class="sdesc">Dark cinematic design with online reservations, menu showcase, and a 40% increase in bookings in 30 days.</div><div class="pills"><span class="pill">Custom Design</span><span class="pill">Reservations</span><span class="pill">Menu Gallery</span><span class="pill">SEO</span></div><div class="res">40% more reservations in 30 days</div></div>
+    </div>
+    <div class="sci fl rv">
+      <div class="scr"><div class="scb2"><div class="scd" style="background:#FF5F57"></div><div class="scd" style="background:#FFBD2E"></div><div class="scd" style="background:#28CA41"></div><div class="scu">apexfitnessnyc.com</div></div><div style="background:#080808;"><div style="background:#080808;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #111;"><span style="font-size:13px;font-weight:900;color:#fff;letter-spacing:.1em;">APEX<span style="color:#E5FF00">.</span></span></div><div style="background:#000;padding:28px 18px;"><div style="font-size:8px;color:#E5FF00;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;">Elite Training NYC</div><div style="font-size:30px;font-weight:900;color:#fff;line-height:.9;text-transform:uppercase;margin-bottom:10px;">TRAIN<br><span style="color:#E5FF00;">DIFFERENT.</span></div><div style="display:inline-block;background:#E5FF00;color:#000;font-size:8px;font-weight:900;padding:7px 15px;text-transform:uppercase;">Start Free Trial</div></div><div style="display:flex;border-top:1px solid #111;border-bottom:1px solid #111;"><div style="flex:1;padding:9px;text-align:center;border-right:1px solid #111;"><div style="font-size:16px;font-weight:900;color:#E5FF00;">12K</div><div style="font-size:7px;color:#444;text-transform:uppercase;">Members</div></div><div style="flex:1;padding:9px;text-align:center;border-right:1px solid #111;"><div style="font-size:16px;font-weight:900;color:#E5FF00;">50+</div><div style="font-size:7px;color:#444;text-transform:uppercase;">Classes</div></div><div style="flex:1;padding:9px;text-align:center;"><div style="font-size:16px;font-weight:900;color:#E5FF00;">8</div><div style="font-size:7px;color:#444;text-transform:uppercase;">Locations</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#111;"><div style="background:#0A0A0A;padding:10px;"><div style="font-size:8px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:3px;">Strength</div><div style="font-size:7px;color:#444;">Powerlifting programs</div></div><div style="background:#0A0A0A;padding:10px;"><div style="font-size:8px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:3px;">HIIT</div><div style="font-size:7px;color:#444;">Burn fat fast</div></div><div style="background:#0A0A0A;padding:10px;"><div style="font-size:8px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:3px;">Boxing</div><div style="font-size:7px;color:#444;">Champion coached</div></div><div style="background:#0A0A0A;padding:10px;"><div style="font-size:8px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:3px;">Yoga</div><div style="font-size:7px;color:#444;">Mind body balance</div></div></div></div></div>
+      <div class="scit"><div class="stag">Fitness - New York NY</div><div class="sname">Apex Fitness</div><div class="sdesc">Bold high-energy design with class schedules, membership signup, and location finder. Memberships up 65% in the first month.</div><div class="pills"><span class="pill">Bold Design</span><span class="pill">Membership Portal</span><span class="pill">Class Schedule</span></div><div class="res">65% more memberships in month one</div></div>
+    </div>
+    <div class="sci rv">
+      <div class="scr"><div class="scb2"><div class="scd" style="background:#FF5F57"></div><div class="scd" style="background:#FFBD2E"></div><div class="scd" style="background:#28CA41"></div><div class="scu">serenespa.com</div></div><div style="background:#F7F3EE;"><div style="background:#F7F3EE;padding:12px 16px;border-bottom:1px solid #E8E0D4;"><span style="font-size:13px;color:#3D2E1E;letter-spacing:.12em;font-style:italic;">Serene</span></div><div style="background:linear-gradient(180deg,#EDE4D8,#F7F3EE);padding:32px 20px;text-align:center;"><div style="font-size:24px;color:#2A1E12;font-style:italic;font-weight:400;line-height:1.2;margin-bottom:10px;">Restore. Renew.<br>Rediscover Yourself.</div><div style="display:inline-block;background:#3D2E1E;color:#F7F3EE;font-size:7px;padding:8px 17px;letter-spacing:.12em;text-transform:uppercase;border-radius:1px;">Book a Treatment</div></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:12px;background:#F0EAE2;"><div style="text-align:center;padding:12px 7px;background:#F7F3EE;border-radius:4px;"><div style="font-size:20px;margin-bottom:4px;">&#x1F9D6;</div><div style="font-size:8px;color:#2A1E12;font-weight:600;">Signature Facial</div><div style="font-size:8px;color:#A07850;">From $180</div></div><div style="text-align:center;padding:12px 7px;background:#F7F3EE;border-radius:4px;"><div style="font-size:20px;margin-bottom:4px;">&#x1F486;</div><div style="font-size:8px;color:#2A1E12;font-weight:600;">Hot Stone Massage</div><div style="font-size:8px;color:#A07850;">From $220</div></div><div style="text-align:center;padding:12px 7px;background:#F7F3EE;border-radius:4px;"><div style="font-size:20px;margin-bottom:4px;">&#x2728;</div><div style="font-size:8px;color:#2A1E12;font-weight:600;">Body Ritual</div><div style="font-size:8px;color:#A07850;">From $260</div></div></div><div style="background:#3D2E1E;padding:9px 16px;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:10px;color:#C9A84C;font-style:italic;">Serene</span><span style="font-size:7px;color:rgba(255,255,255,.3);">Beverly Hills</span></div></div></div>
+      <div class="scit"><div class="stag">Luxury Spa - Beverly Hills CA</div><div class="sname">Serene Spa</div><div class="sdesc">Soft editorial design with online booking, gift cards, and a full treatment menu. Average booking value up $85 per visit.</div><div class="pills"><span class="pill">Luxury Design</span><span class="pill">Online Booking</span><span class="pill">Gift Cards</span><span class="pill">SEO</span></div><div class="res">$85 higher avg. booking value</div></div>
+    </div>
+  </div>
+</div></div><div class="prs"><div class="si">
+  <p class="ey rv">How It Works</p>
+  <h2 class="rv">From zero to live in <em>7 days.</em></h2>
+  <div class="prg">
+    <div class="ps rv"><span class="psn">01</span><div class="pst">Free Call</div><div class="psd">30 minutes. We learn your business, goals, and vision. You get a quote on the call.</div></div>
+    <div class="ps rv"><span class="psn">02</span><div class="pst">Proposal</div><div class="psd">Clear scope, fixed price, exact timeline. No surprises, no hidden fees. Ever.</div></div>
+    <div class="ps rv"><span class="psn">03</span><div class="pst">We Build</div><div class="psd">You relax. We design, develop, and test. Daily updates so you are always in the loop.</div></div>
+    <div class="ps rv"><span class="psn">04</span><div class="pst">You Launch</div><div class="psd">Site live in 7 days. We handle hosting, launch, and any revisions.</div></div>
+  </div>
+</div></div>
+<div class="bks" id="booking"><div class="si">
+  <p class="ey rv">Free Consultation</p>
+  <h2 class="rv">Book your <em>free</em> 30-min call.</h2>
+  <p class="ss rv">Pick a time. We discuss your project and give you a free quote.</p>
+  <div class="bkl">
+    <div class="cal rv">
+      <div class="cah"><button class="can" onclick="chM(-1)">&lsaquo;</button><span class="cam" id="calLbl"></span><button class="can" onclick="chM(1)">&rsaquo;</button></div>
+      <div class="cadow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+      <div class="cagd" id="cagd"></div>
+    </div>
+    <div class="rv">
+      <div class="slt" id="slt">Select a date</div>
+      <div class="slg" id="slg"><p style="font-size:13px;color:var(--mut);grid-column:1/-1;">Pick a date from the calendar</p></div>
+      <input class="bi" id="bn" placeholder="Your name">
+      <input class="bi" id="be" type="email" placeholder="Your email">
+      <button class="bkb" id="bkb" onclick="confBook()">Confirm Free Consultation</button>
+      <div class="bok" id="bok">Booked! We will email you a confirmation shortly.</div>
+    </div>
+  </div>
+</div></div>
+<div class="ts rv">
+  <p class="tq">Quantum Snippet rebuilt our website in 6 days. It looks incredible, loads instantly, and we have already seen a 40% increase in enquiries. Worth every penny.</p>
+  <p class="ta"><strong>Your First Client</strong> - Small Business Owner, USA</p>
+</div>
+<div class="ct" id="contact"><div class="cti">
+  <div>
+    <p class="ey rv">Get a Quote</p>
+    <h2 class="rv">Lets build something <em>great.</em></h2>
+    <div class="ug rv"><span class="ugd"></span>Only 2 spots left this month</div>
+    <p class="ss rv" style="margin-bottom:0;">Fill out the form and we will get back to you within 24 hours.</p>
+    <div style="margin-top:28px;" class="rv">
+      <div class="pk">Free consultation call included</div>
+      <div class="pk">Fixed price - no hidden fees</div>
+      <div class="pk">7-day delivery guarantee</div>
+      <div class="pk">Free revisions until you love it</div>
+      <div class="pk">6 months free support after launch</div>
+    </div>
+  </div>
+  <div class="cf rv">
+    <div class="cfr"><input id="cfn" placeholder="Your name"><input id="cfe" type="email" placeholder="Your email"></div>
+    <input id="cfb2" placeholder="Business name">
+    <select id="cfs"><option value="">What do you need?</option><option>Starter Website - $499</option><option>Business Website - $799</option><option>Redesign - $599</option><option>Not sure - lets talk</option></select>
+    <textarea id="cfm" placeholder="Tell us about your business..."></textarea>
+    <button class="cfb" id="cfbtn" onclick="subForm()">Send My Free Quote Request</button>
+    <p class="cfok" id="cfok">Message sent! We will be in touch within 24 hours.</p>
+    <p class="cfer" id="cfer">Something went wrong. Email quatumsnippet@gmail.com</p>
+  </div>
+</div></div>
+<footer>
+  <div class="flogo">Quantum <span>Snippet</span></div>
+  <div class="fls"><a href="#services">Services</a><a href="#work">Work</a><a href="#booking">Book a Call</a><a href="#contact">Contact</a></div>
+  <div class="fc">
+    <a href="tel:4192902449">(419) 290-2449</a>
+    <a href="mailto:quatumsnippet@gmail.com">quatumsnippet@gmail.com</a>
+    <div class="fcp">&copy; 2025 Quantum Snippet Web Design Agency</div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('7VDE0XyLozKV2FFPE');
+window.addEventListener('scroll',function(){
+  var p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('bar').style.width=p+'%';
+});
+var ro=new IntersectionObserver(function(entries){
+  entries.forEach(function(e,i){if(e.isIntersecting)setTimeout(function(){e.target.classList.add('in');},i*80);});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+function toggleM(){document.getElementById('mm').classList.toggle('open');}
+var dark=true;
+function toggleMode(){
+  dark=!dark;
+  document.body.classList.toggle('light',!dark);
+  document.getElementById('modeBtn').textContent=dark?'Light Mode':'Dark Mode';
+  try{localStorage.setItem('qm',dark?'d':'l');}catch(e){}
+}
+try{if(localStorage.getItem('qm')==='l'){dark=false;document.body.classList.add('light');document.getElementById('modeBtn').textContent='Dark Mode';}}catch(e){}
+function toggleL(){document.getElementById('ldrop').classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.lw'))document.getElementById('ldrop').classList.remove('open');});
+var langs={
+  en:{d:'Fast, beautiful, conversion-focused websites for small businesses across the USA. Delivered in 7 days - guaranteed.',b1:'Book a Free 30-Min Call',b2:'See Our Work'},
+  es:{d:'Sitios web rapidos y hermosos. En 7 dias garantizado.',b1:'Reserva una Llamada Gratis',b2:'Ver Proyectos'},
+  fr:{d:'Sites web rapides et beaux. Livraison en 7 jours garanti.',b1:'Reserver un Appel Gratuit',b2:'Voir nos Projets'},
+  pt:{d:'Sites rapidos e bonitos. Em 7 dias garantido.',b1:'Agendar Chamada Gratis',b2:'Ver Projetos'}
+};
+function setL(l,el){
+  var t=langs[l];
+  document.getElementById('ldrop').classList.remove('open');
+  document.getElementById('lbtn').textContent=l.toUpperCase();
+  document.getElementById('hd').textContent=t.d;
+  document.getElementById('hb1').textContent=t.b1;
+  document.getElementById('hb2').textContent=t.b2;
+  document.querySelectorAll('.lopt').forEach(function(o){o.classList.remove('on');});
+  el.classList.add('on');
+}
+var counted=false;
+function runC(){
+  if(counted)return;
+  var box=document.getElementById('counters');
+  if(!box||box.getBoundingClientRect().top>window.innerHeight)return;
+  counted=true;
+  document.querySelectorAll('[data-target]').forEach(function(el){
+    var target=parseInt(el.getAttribute('data-target'));
+    var sfx=el.getAttribute('data-sfx')||'';
+    var start=null,dur=1800;
+    (function step(ts){
+      if(!start)start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var ease=1-Math.pow(1-p,3);
+      el.textContent=Math.floor(ease*target)+sfx;
+      if(p<1)requestAnimationFrame(step);else el.textContent=target+sfx;
+    })(performance.now());
+  });
+}
+window.addEventListener('scroll',runC);setTimeout(runC,800);
+function initBA(wid,bid,lid,hid){
+  var w=document.getElementById(wid),b=document.getElementById(bid),l=document.getElementById(lid),h=document.getElementById(hid);
+  if(!w||!b||!l||!h)return;
+  var drag=false;
+  function set(pct){
+    pct=Math.max(5,Math.min(95,pct));
+    b.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';
+    l.style.left=pct+'%';h.style.left=pct+'%';
+  }
+  set(50);
+  function gp(e){var r=w.getBoundingClientRect();return((e.touches?e.touches[0].clientX:e.clientX)-r.left)/r.width*100;}
+  w.addEventListener('mousedown',function(e){drag=true;set(gp(e));e.preventDefault();});
+  w.addEventListener('touchstart',function(e){drag=true;set(gp(e));},{passive:true});
+  window.addEventListener('mousemove',function(e){if(drag)set(gp(e));});
+  window.addEventListener('touchmove',function(e){if(drag)set(gp(e));},{passive:true});
+  window.addEventListener('mouseup',function(){drag=false;});
+  window.addEventListener('touchend',function(){drag=false;});
+}
+initBA('sl1','b1','l1','h1');initBA('sl2','b2','l2','h2');initBA('sl3','b3','l3','h3');
+var now=new Date(),cy=now.getFullYear(),cm=now.getMonth(),selD=null,selT=null;
+var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+var TM=['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM'];
+function rCal(){
+  document.getElementById('calLbl').textContent=MN[cm]+' '+cy;
+  var g=document.getElementById('cagd');g.innerHTML='';
+  var first=new Date(cy,cm,1).getDay(),days=new Date(cy,cm+1,0).getDate();
+  var today=new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+  for(var i=0;i<first;i++){var d=document.createElement('div');d.className='cd of';g.appendChild(d);}
+  for(var day=1;day<=days;day++){
+    var d=document.createElement('div');
+    var ts=new Date(cy,cm,day).getTime();
+    var dow=new Date(cy,cm,day).getDay();
+    var k=cy+'-'+cm+'-'+day;
+    if(ts<today||dow===0||dow===6){d.className='cd of';}
+    else{
+      d.className='cd av'+(ts===today?' td':'')+(selD===k?' sl':'');
+      (function(key,dy){d.onclick=function(){selD=key;selT=null;rCal();rSlots(dy);};})(k,day);
+    }
+    d.textContent=day;g.appendChild(d);
+  }
+}
+function rSlots(day){
+  document.getElementById('slt').textContent=MN[cm]+' '+day+' - Pick a Time';
+  var g=document.getElementById('slg');g.innerHTML='';
+  TM.forEach(function(t){
+    var s=document.createElement('div');s.className='sli';s.textContent=t;
+    s.onclick=function(){
+      document.querySelectorAll('.sli').forEach(function(x){x.classList.remove('sl');});
+      s.classList.add('sl');selT=t;
+      document.getElementById('bn').style.display='block';
+      document.getElementById('be').style.display='block';
+      document.getElementById('bkb').style.display='block';
+    };
+    g.appendChild(s);
+  });
+}
+function chM(d){cm+=d;if(cm>11){cm=0;cy++;}if(cm<0){cm=11;cy--;}rCal();}
+function confBook(){
+  var n=document.getElementById('bn').value.trim(),e=document.getElementById('be').value.trim();
+  if(!n||!e||!e.includes('@'))return;
+  emailjs.send('service_fxkc47a','template_sszzlhg',{user_email:e,name:n,business:'Booking: '+selD+' at '+selT,service:'Free Consultation',message:'Booked by '+n});
+  document.getElementById('bok').style.display='block';
+  document.getElementById('bkb').style.display='none';
+  document.getElementById('bn').style.display='none';
+  document.getElementById('be').style.display='none';
+}
+rCal();
+function subForm(){
+  var n=document.getElementById('cfn').value.trim(),e=document.getElementById('cfe').value.trim();
+  var b=document.getElementById('cfb2').value.trim(),s=document.getElementById('cfs').value,m=document.getElementById('cfm').value.trim();
+  var btn=document.getElementById('cfbtn');
+  if(!n||!e||!e.includes('@'))return;
+  btn.textContent='Sending...';btn.disabled=true;
+  emailjs.send('service_fxkc47a','template_sszzlhg',{user_email:e,name:n,business:b||'N/A',service:s||'N/A',message:m||'No message'})
+  .then(function(){document.getElementById('cfok').style.display='block';btn.textContent='Sent!';})
+  .catch(function(){document.getElementById('cfer').style.display='block';btn.textContent='Send My Free Quote Request';btn.disabled=false;});
+}
+</script>
+</body>
+</html>
